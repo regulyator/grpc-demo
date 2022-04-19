@@ -37,7 +37,7 @@ protobuf {
         }
     }
 
-    generatedFilesBaseDir = "$projectDir/src"
+    generatedFilesBaseDir = "$projectDir/generated"
 }
 
 publishing {
@@ -56,7 +56,7 @@ sourceSets {
     main {
         proto {
             srcDir "proto"
-            srcDir "src/main/grpc"
+            srcDir "generated/grpc"
         }
     }
 }
