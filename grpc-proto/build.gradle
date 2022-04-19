@@ -1,26 +1,25 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'com.google.protobuf' version '0.8.17'
+    id 'maven-publish'
 }
 
 def grpcVersion = '1.45.1'
 
 group 'com.regulyator'
 version '1.0'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
+    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
-}
-
-test {
-    useJUnitPlatform()
 }
 
 protobuf {
@@ -38,5 +37,31 @@ protobuf {
         }
     }
 
-    generatedFilesBaseDir = "$projectDir/src/generated"
+    generatedFilesBaseDir = "$projectDir/src"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.regulyator'
+            artifactId = 'grpc-proto'
+            version = '1.0'
+
+            from components.java
+        }
+    }
+}
+
+sourceSets {
+    main {
+        proto {
+            srcDir "proto"
+            srcDir "src/main/grpc"
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources"
+    from sourceSets.main.allSource
 }
