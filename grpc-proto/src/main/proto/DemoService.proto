@@ -1,0 +1,17 @@
+syntax="proto3";
+option java_multiple_files = true;
+option java_outer_classname = "DemoServiceAPI";
+option java_package = "com.regulyator.demo.grpc.demoservice";
+package com.regulyator.demo.grpc.demoservice;
+
+message DemoRequest {
+  int32 counterRequest = 1;
+}
+
+message DemoResponse {
+  int32 counterResponse = 1;
+}
+
+service DemoService {
+  rpc hello(stream DemoRequest) returns (stream DemoResponse);
+}
