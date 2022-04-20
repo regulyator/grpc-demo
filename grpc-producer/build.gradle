@@ -1,17 +1,18 @@
-plugins {
-    id 'java'
-}
-
 group 'com.regulyator'
 version '0.0.1-SNAPSHOT'
 
-repositories {
-    mavenCentral()
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.regulyator:grpc-proto:1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'net.devh:grpc-client-spring-boot-starter:2.13.1.RELEASE'
 }
 
 test {

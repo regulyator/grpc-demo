@@ -11,10 +11,13 @@ public class DemoGrpcConsumer extends DemoServiceGrpc.DemoServiceImplBase {
 
     @Override
     public void hello(DemoRequest request, StreamObserver<DemoResponse> responseObserver) {
-        DemoResponse response = DemoResponse.newBuilder()
-                .setCounterResponse(request.getCounterRequest()+1)
-                .build();
-        responseObserver.onNext(response);
+        for(int i = 1; i <= 10; i++){
+            DemoResponse response = DemoResponse.newBuilder()
+                    .setCounterResponse(request.getCounterRequest()+i)
+                    .build();
+            responseObserver.onNext(response);
+        }
+
         responseObserver.onCompleted();
     }
 

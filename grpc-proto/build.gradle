@@ -11,10 +11,6 @@ version '1.0'
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
@@ -62,6 +58,6 @@ sourceSets {
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = "sources"
+    archiveClassifier.set("sources")
     from sourceSets.main.allSource
 }

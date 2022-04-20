@@ -1,22 +1,10 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot'
-}
-
 group 'com.regulyator'
 version '0.0.1-SNAPSHOT'
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
 
 dependencies {
     implementation 'com.regulyator:grpc-proto:1.0'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'net.devh:grpc-server-spring-boot-starter:2.13.1.RELEASE'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {

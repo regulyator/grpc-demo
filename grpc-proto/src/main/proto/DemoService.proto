@@ -12,5 +12,5 @@ message DemoResponse {
 }
 
 service DemoService {
-  rpc Hello(DemoRequest) returns (DemoResponse);
+  rpc Hello(DemoRequest) returns (stream DemoResponse);
 }
