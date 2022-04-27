@@ -37,13 +37,22 @@ protobuf {
 }
 
 publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.regulyator'
-            artifactId = 'grpc-proto'
-            version = '1.0'
 
-            from components.java
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/regulyator/grpc-demo")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            gpr(MavenPublication) {
+                from(components.java)
+            }
         }
     }
 }
